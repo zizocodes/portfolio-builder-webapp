@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfolioForge — Visual Portfolio Builder</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     TOP NAV BAR
+══════════════════════════════════════ -->
+<nav class="topbar">
+  <div class="topbar-brand">
+    <span class="brand-icon">⬡</span>
+    <span class="brand-name">PortfolioForge</span>
+  </div>
+
+  <div class="topbar-center">
+    <!-- Viewport toggles -->
+    <div class="viewport-toggles" title="Preview size">
+      <button class="vp-btn active" data-vp="desktop" title="Desktop">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </button>
+      <button class="vp-btn" data-vp="tablet" title="Tablet">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </button>
+      <button class="vp-btn" data-vp="mobile" title="Mobile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="topbar-actions">
+    <button id="btn-undo" class="icon-btn" title="Undo">↩</button>
+    <button id="btn-redo" class="icon-btn" title="Redo">↪</button>
+    <button id="btn-preview" class="action-btn ghost">Preview</button>
+    <button id="btn-export" class="action-btn primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export HTML
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     MAIN LAYOUT: LEFT SIDEBAR + CANVAS + RIGHT SIDEBAR
+══════════════════════════════════════ -->
+<div class="builder-layout">
+
+  <!-- ── LEFT SIDEBAR ── -->
+  <aside class="sidebar left-sidebar">
+
+    <!-- Tab switcher -->
+    <div class="sidebar-tabs">
+      <button class="stab active" data-tab="components">Blocks</button>
+      <button class="stab" data-tab="templates">Templates</button>
+    </div>
+
+    <!-- COMPONENTS TAB -->
+    <div class="tab-panel active" id="tab-components">
+      <p class="sidebar-hint">Drag blocks onto the canvas →</p>
+      <div class="component-list" id="component-palette">
+        <div class="component-item" draggable="true" data-type="hero">
+          <span class="comp-icon">🚀</span>
+          <div>
+            <div class="comp-name">Hero</div>
+            <div class="comp-desc">Name, title & CTA</div>
+          </div>
+        </div>
+        <div class="component-item" draggable="true" data-type="about">
+          <span class="comp-icon">👤</span>
+          <div>
+            <div class="comp-name">About</div>
+            <div class="comp-desc">Bio & photo</div>
+          </div>
+        </div>
+        <div class="component-item" draggable="true" data-type="skills">
+          <span class="comp-icon">⚡</span>
+          <div>
+            <div class="comp-name">Skills</div>
+            <div class="comp-desc">Tech stack & bars</div>
+          </div>
+        </div>
+        <div class="component-item" draggable="true" data-type="projects">
+          <span class="comp-icon">📂</span>
+          <div>
+            <div class="comp-name">Projects</div>
+            <div class="comp-desc">Showcase work</div>
+          </div>
+        </div>
+        <div class="component-item" draggable="true" data-type="contact">
+          <span class="comp-icon">✉️</span>
+          <div>
+            <div class="comp-name">Contact</div>
+            <div class="comp-desc">Email & socials</div>
+          </div>
+        </div>
+        <div class="component-item" draggable="true" data-type="footer">
+          <span class="comp-icon">⚓</span>
+          <div>
+            <div class="comp-name">Footer</div>
+            <div class="comp-desc">Credits & links</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATES TAB -->
+    <div class="tab-panel" id="tab-templates">
+      <p class="sidebar-hint">Pick a starter template:</p>
+      <div class="template-list">
+        <div class="template-card" data-template="minimal">
+          <div class="tpl-preview minimal-preview">
+            <div class="tpl-line thick"></div>
+            <div class="tpl-line"></div>
+            <div class="tpl-line short"></div>
+          </div>
+          <div class="tpl-meta">
+            <div class="tpl-name">Minimal Dev</div>
+            <div class="tpl-tag">Clean & sharp</div>
+          </div>
+          <button class="use-template-btn" data-template="minimal">Use</button>
+        </div>
+        <div class="template-card" data-template="creative">
+          <div class="tpl-preview creative-preview">
+            <div class="tpl-blob"></div>
+            <div class="tpl-line"></div>
+            <div class="tpl-line short"></div>
+          </div>
+          <div class="tpl-meta">
+            <div class="tpl-name">Creative Designer</div>
+            <div class="tpl-tag">Bold & colorful</div>
+          </div>
+          <button class="use-template-btn" data-template="creative">Use</button>
+        </div>
+        <div class="template-card" data-template="corporate">
+          <div class="tpl-preview corporate-preview">
+            <div class="tpl-bar"></div>
+            <div class="tpl-line"></div>
+            <div class="tpl-line"></div>
+            <div class="tpl-line short"></div>
+          </div>
+          <div class="tpl-meta">
+            <div class="tpl-name">Corporate Pro</div>
+            <div class="tpl-tag">Formal & structured</div>
+          </div>
+          <button class="use-template-btn" data-template="corporate">Use</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── CENTER CANVAS ── -->
+  <main class="canvas-wrapper">
+    <div class="canvas-frame" id="canvas-frame">
+      <div class="canvas-drop-zone" id="canvas">
+        <!-- Sections are injected here -->
+        <div class="canvas-empty-state" id="empty-state">
+          <div class="empty-icon">⬡</div>
+          <h3>Start Building</h3>
+          <p>Drag blocks from the left panel<br>or choose a template to begin</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── RIGHT SIDEBAR ── -->
+  <aside class="sidebar right-sidebar">
+    <div class="right-sidebar-tabs">
+      <button class="rstab active" data-rtab="theme">Theme</button>
+      <button class="rstab" data-rtab="section">Section</button>
+    </div>
+
+    <!-- THEME PANEL -->
+    <div class="rtab-panel active" id="rtab-theme">
+      <div class="settings-group">
+        <label class="settings-label">Primary Color</label>
+        <div class="color-picker-row">
+          <input type="color" id="color-primary" value="#6366f1" class="color-swatch" />
+          <span class="color-hex" id="hex-primary">#6366f1</span>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Background</label>
+        <div class="color-picker-row">
+          <input type="color" id="color-bg" value="#0f0f13" class="color-swatch" />
+          <span class="color-hex" id="hex-bg">#0f0f13</span>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Text Color</label>
+        <div class="color-picker-row">
+          <input type="color" id="color-text" value="#f0f0f0" class="color-swatch" />
+          <span class="color-hex" id="hex-text">#f0f0f0</span>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Font Family</label>
+        <select id="font-select" class="settings-select">
+          <option value="'Syne', sans-serif">Syne (Modern)</option>
+          <option value="'DM Sans', sans-serif">DM Sans (Clean)</option>
+          <option value="'JetBrains Mono', monospace">JetBrains Mono (Code)</option>
+          <option value="Georgia, serif">Georgia (Classic)</option>
+          <option value="'Trebuchet MS', sans-serif">Trebuchet (Corporate)</option>
+        </select>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Card Style</label>
+        <div class="card-style-options">
+          <button class="card-style-btn active" data-card="glass">Glass</button>
+          <button class="card-style-btn" data-card="solid">Solid</button>
+          <button class="card-style-btn" data-card="outline">Outline</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Mode</label>
+        <div class="toggle-row">
+          <span>Light</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle" checked />
+            <span class="toggle-slider"></span>
+          </label>
+          <span>Dark</span>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label class="settings-label">Accent Preset</label>
+        <div class="color-presets">
+          <button class="preset-dot" style="background:#6366f1" data-color="#6366f1" title="Indigo"></button>
+          <button class="preset-dot" style="background:#06b6d4" data-color="#06b6d4" title="Cyan"></button>
+          <button class="preset-dot" style="background:#10b981" data-color="#10b981" title="Emerald"></button>
+          <button class="preset-dot" style="background:#f59e0b" data-color="#f59e0b" title="Amber"></button>
+          <button class="preset-dot" style="background:#ef4444" data-color="#ef4444" title="Red"></button>
+          <button class="preset-dot" style="background:#ec4899" data-color="#ec4899" title="Pink"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION SETTINGS PANEL -->
+    <div class="rtab-panel" id="rtab-section">
+      <div id="section-editor-placeholder">
+        <div class="no-selection-hint">
+          <span>🎯</span>
+          <p>Click a section on the canvas to edit its content</p>
+        </div>
+      </div>
+      <div id="section-editor" style="display:none;"></div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ══════════════════════════════════════
+     EDIT MODAL (inline content editing)
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="edit-modal" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-title">Edit Section</h3>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <!-- Dynamic fields injected here -->
+    </div>
+    <div class="modal-footer">
+      <button class="action-btn ghost" id="modal-cancel">Cancel</button>
+      <button class="action-btn primary" id="modal-save">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FULL PREVIEW OVERLAY
+══════════════════════════════════════ -->
+<div class="preview-overlay" id="preview-overlay" style="display:none;">
+  <div class="preview-topbar">
+    <span>Preview Mode</span>
+    <button id="close-preview" class="action-btn ghost">✕ Close</button>
+  </div>
+  <iframe id="preview-iframe" class="preview-iframe"></iframe>
+</div>
+
+<!-- ══════════════════════════════════════
+     TOAST NOTIFICATIONS
+══════════════════════════════════════ -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
